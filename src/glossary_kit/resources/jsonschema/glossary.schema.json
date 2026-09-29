@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://glossary-kit.dev/schema/glossary/1.0.0",
+  "title": "Glossary Kit Glossary Schema",
+  "type": "object",
+  "required": ["metadata", "terms"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["title", "schema_version"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "language": { "type": "string", "default": "en" },
+        "attribution": { "type": "string" },
+        "publisher": { "type": "string" }
+      }
+    },
+    "terms": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/term" }
+    }
+  },
+  "$defs": {
+    "term": {
+      "type": "object",
+      "required": ["id", "preferred_label", "definition", "status", "language"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "preferred_label": { "type": "string", "minLength": 1 },
+        "definition": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "approved", "deprecated"] },
+        "language": { "type": "string", "minLength": 2 },
+        "abbreviation": { "type": "string" },
+        "synonyms": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "domain": { "type": "string" },
+        "steward": { "type": "string" },
+        "version": { "type": "string" },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" },
+              "citation": { "type": "string" }
+            }
+          }
+        },
+        "source_url": { "type": "string" },
+        "licence": { "type": "string" },
+        "licence_url": { "type": "string" },
+        "definition_method": { "type": "string" },
+        "reuse_status": {
+          "type": "string",
+          "enum": ["verified_open", "licence_not_verified", "excluded"]
+        },
+        "attribution": { "type": "string" },
+        "demo": { "type": "boolean" },
+        "related_terms": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "classification": { "type": "string" },
+        "dictionary_bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["header", "term_id"],
+            "properties": {
+              "header": { "type": "string" },
+              "term_id": { "type": "string" }
+            }
+          }
+        },
+        "publication": {
+          "type": "object",
+          "properties": {
+            "visibility": { "type": "string", "enum": ["public", "internal"] }
+          }
+        },
+        "replaces": { "type": "string" },
+        "replaced_by": { "type": "string" }
+      }
+    }
+  }
+}

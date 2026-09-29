@@ -1,0 +1,28 @@
+metadata:
+  title: Minimal Test Glossary
+  description: Fixture for unit tests
+  schema_version: "1.0.0"
+terms:
+  - id: alpha
+    preferred_label: Alpha term
+    definition: First concept used in automated tests for validation.
+    status: approved
+    language: en
+    steward: test-steward
+    source_url: https://example.com/alpha
+    domain: testing
+    dictionary_bindings:
+      - header: col_a
+        term_id: alpha
+  - id: beta
+    preferred_label: Beta term
+    definition: Second concept referenced by alpha in relationship tests.
+    status: approved
+    language: en
+    steward: test-steward
+    source_url: https://example.com/beta
+    related_terms:
+      - alpha
+    dictionary_bindings:
+      - header: col_b
+        term_id: beta

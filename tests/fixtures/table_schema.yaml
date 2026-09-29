@@ -1,0 +1,7 @@
+fields:
+  - name: col_a
+    type: string
+  - name: col_b
+    type: integer
+  - name: unmapped_field
+    type: string

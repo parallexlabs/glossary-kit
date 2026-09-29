@@ -1,0 +1,758 @@
+metadata:
+  title: Public Sector Data Governance Sample Glossary
+  description: Demonstration glossary with paraphrased definitions from open Canadian government sources.
+  schema_version: 1.0.0
+  language: en
+  publisher: ParalleX Labs Inc. (demonstration)
+  attribution: Contains paraphrased definitions from Open Government Licence – Canada and Statistics Canada Open Licence sources.
+    See per-term provenance fields.
+terms:
+- id: dataset
+  preferred_label: Dataset
+  definition: An organized collection of data that can be understood on its own or with related datasets.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+  related_terms:
+  - metadata
+  - data-inventory
+- id: data-inventory
+  preferred_label: Data inventory
+  definition: A maintained listing of an organization's significant data holdings and descriptive information about them.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: metadata
+  preferred_label: Metadata
+  definition: Structured information describing a data asset so people and systems can discover and use it.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: title-metadata
+  preferred_label: Title (metadata)
+  definition: The human-readable name of a published data or information asset.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: description-metadata
+  preferred_label: Description (metadata)
+  definition: A concise explanation of an asset's subject, purpose, coverage, or contents.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: publisher-metadata
+  preferred_label: Publisher (metadata)
+  definition: The organization responsible for publishing or making an asset available.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: subject-metadata
+  preferred_label: Subject (metadata)
+  definition: A controlled topic or category describing what an asset concerns.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: keyword-metadata
+  preferred_label: Keyword (metadata)
+  definition: A descriptive word or phrase used to improve discovery of an asset.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: maintenance-frequency
+  preferred_label: Maintenance and update frequency
+  definition: The expected schedule for reviewing or refreshing a dataset.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/e418841e-d9dc-4caf-9a19-09b3269a3e1e
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: open-data
+  preferred_label: Open data
+  definition: Data made available under terms that support reuse, with documentation describing the data.
+  status: approved
+  language: en
+  domain: open-data
+  steward: demo-steward
+  source_url: https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: census-subdivision
+  preferred_label: Census subdivision
+  definition: A municipality or area treated as a municipal equivalent for census purposes.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-195-x/92-195-x2021001-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+  abbreviation: CSD
+  related_terms:
+  - census-division
+  - dissemination-area
+- id: census-division
+  preferred_label: Census division
+  definition: An intermediate geographic area between province or territory and census subdivision.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-500-g/2011001/app-ann/app-anna-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+  abbreviation: CD
+- id: census-metropolitan-area
+  preferred_label: Census metropolitan area
+  definition: A large urban region of neighbouring municipalities linked by commuting patterns.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-637-g/2011001/2011005-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+  abbreviation: CMA
+- id: dissemination-area
+  preferred_label: Dissemination area
+  definition: A small standard geographic area used for publishing census data.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-195-x/92-195-x2021001-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: population-centre
+  preferred_label: Population centre
+  definition: A continuously built-up area meeting Statistics Canada population and density thresholds.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-637-g/2011001/2011005-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: rural-area
+  preferred_label: Rural area
+  definition: Territory outside Statistics Canada population centres.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-162-g/2015001/app-ann/app-anna-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: geocoding
+  preferred_label: Geocoding
+  definition: The process of assigning a geographic location or identifier to an address or location description.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-195-x/92-195-x2021001-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: population-density
+  preferred_label: Population density
+  definition: The number of people per unit of land area, usually persons per square kilometre.
+  status: approved
+  language: en
+  domain: geospatial
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/92-500-g/2011001/app-ann/app-anna-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: population
+  preferred_label: Population
+  definition: Persons included in the population universe for a geographic area and reference date.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/en/catalogue/98-301-X
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: private-dwelling
+  preferred_label: Private dwelling
+  definition: A separate set of living quarters with its own entrance meeting census occupancy rules.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www12.statcan.gc.ca/census-recensement/2021/ref/dict/98-301-x2021001-eng.pdf
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: household
+  preferred_label: Household
+  definition: One person or a group occupying the same dwelling with no other usual residence.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/91-528-x/2025001/gloss-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: private-household
+  preferred_label: Private household
+  definition: Usual residents of a private dwelling with no other usual place of residence.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www23.statcan.gc.ca/imdb/p3Var.pl?Function=DEC&Id=251053
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: household-size
+  preferred_label: Household size
+  definition: The number of people in a private household.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/45-20-0004/2024005/meta-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: census-family
+  preferred_label: Census family
+  definition: A couple with or without children, or a one-parent family with at least one child, per census rules.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/n1/pub/91-528-x/2026001/chap12-eng.htm
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: tenure
+  preferred_label: Tenure
+  definition: Whether a household owns or rents its dwelling.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/t1/tbl1/en/cbv.action
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: housing-suitability
+  preferred_label: Housing suitability
+  definition: Whether a dwelling has enough bedrooms for household size and composition.
+  status: approved
+  language: en
+  domain: demographics
+  steward: demo-steward
+  source_url: https://www150.statcan.gc.ca/t1/tbl1/en/cbv.action
+  licence: Statistics Canada Open Licence
+  licence_url: https://www.statcan.gc.ca/en/terms-conditions/open-licence
+  definition_method: paraphrased
+  reuse_status: verified_open
+  attribution: Contains information adapted from Statistics Canada (paraphrased)
+- id: estimates
+  preferred_label: Estimates
+  definition: Formal presentation of planned spending authorities for a fiscal year.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: planned-spending
+  preferred_label: Planned spending
+  definition: Spending expected over a future period under approved or anticipated authorities.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: voted-expenditure
+  preferred_label: Voted expenditure
+  definition: Spending requiring legislative appropriation approval.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: statutory-expenditure
+  preferred_label: Statutory expenditure
+  definition: Spending authorized by existing legislation rather than an annual vote.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: appropriation
+  preferred_label: Appropriation
+  definition: Legislative authority permitting public money to be spent for specified purposes.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: budgetary-expenditure
+  preferred_label: Budgetary expenditure
+  definition: Spending affecting annual expenses, capital, or transfers excluding financial-asset loans.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: non-budgetary-expenditure
+  preferred_label: Non-budgetary expenditure
+  definition: Financial transactions such as loans or investments that change asset composition.
+  status: approved
+  language: en
+  domain: finance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/506539d5-e635-49ff-a70e-2ca4f7d59c88
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service
+  preferred_label: Service
+  definition: An activity through which an organization delivers value to a recipient or client.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service-inventory
+  preferred_label: Service inventory
+  definition: A structured register of services and key information about each.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service-standard
+  preferred_label: Service standard
+  definition: A public commitment describing expected service levels.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service-standard-target
+  preferred_label: Service standard target
+  definition: The performance level committed or aimed for under a service standard.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service-performance-result
+  preferred_label: Service performance result
+  definition: Measured performance against a service standard or target.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service-channel
+  preferred_label: Service channel
+  definition: Means of accessing a service such as online, phone, or in person.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: service-metric
+  preferred_label: Service metric
+  definition: A quantitative measure of demand, timeliness, uptake, or performance.
+  status: approved
+  language: en
+  domain: service-delivery
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: personal-information
+  preferred_label: Personal information
+  definition: Information about an identifiable individual under applicable privacy law.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://open.canada.ca/en/open-government-licence-canada
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: privacy-impact-assessment
+  preferred_label: Privacy impact assessment
+  definition: Structured assessment of privacy risks for a program, system, or initiative.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/27fcdfb8-42a8-4fb4-8968-28fd25ddc666
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: public-classification
+  preferred_label: Public (security classification)
+  definition: Information whose unauthorized disclosure is not expected to cause injury.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: BC classification standard (unclear)
+  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
+  definition_method: paraphrased
+  reuse_status: licence_not_verified
+  demo: true
+- id: protected-a
+  preferred_label: Protected A
+  definition: British Columbia security label indicating disclosure could cause injury.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: BC classification standard (unclear)
+  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
+  definition_method: paraphrased
+  reuse_status: licence_not_verified
+  demo: true
+- id: protected-b
+  preferred_label: Protected B
+  definition: British Columbia security label indicating disclosure could cause serious injury.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: BC classification standard (unclear)
+  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
+  definition_method: paraphrased
+  reuse_status: licence_not_verified
+  demo: true
+- id: protected-c
+  preferred_label: Protected C
+  definition: British Columbia security label indicating disclosure could cause extremely grave injury.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: BC classification standard (unclear)
+  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
+  definition_method: paraphrased
+  reuse_status: licence_not_verified
+  demo: true
+- id: privacy-risk
+  preferred_label: Privacy risk
+  definition: Possibility that handling personal information could adversely affect privacy.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/cec9aad9-8a16-4211-b9c4-5d2ded36f128
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: privacy-control
+  preferred_label: Privacy control
+  definition: A measure to reduce an identified privacy risk.
+  status: approved
+  language: en
+  domain: privacy
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/d6284454-f707-492c-9e4d-ec40ec3cb756
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: record
+  preferred_label: Record
+  definition: Recorded information retained as evidence of an activity or transaction.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/4b2d583d-3bb8-4d89-847a-555d0b9857ca
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: archival-record
+  preferred_label: Archival record
+  definition: A record selected for preservation because of enduring value.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/4b2d583d-3bb8-4d89-847a-555d0b9857ca
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: irbv
+  preferred_label: Information resource of business value
+  definition: Information supporting operations, decisions, or accountability requiring managed retention.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/6b302eb8-daf9-4be9-a4bb-6540cfa9e671
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: disposition
+  preferred_label: Disposition
+  definition: Authorized final action on records after retention, such as destruction or transfer.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/6b302eb8-daf9-4be9-a4bb-6540cfa9e671
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: disposition-authorization
+  preferred_label: Disposition authorization
+  definition: Formal authority governing which records may be disposed of.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/6b302eb8-daf9-4be9-a4bb-6540cfa9e671
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: retention-period
+  preferred_label: Retention period
+  definition: Time records must be kept before eligible for disposition.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/2617ad25-ecab-461f-a01b-d0933dd61f6d
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: archival-metadata
+  preferred_label: Archival metadata
+  definition: Descriptive, administrative, or technical metadata maintained with archival records.
+  status: approved
+  language: en
+  domain: records
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/4b2d583d-3bb8-4d89-847a-555d0b9857ca
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: performance-indicator
+  preferred_label: Performance indicator
+  definition: A measure used to assess progress toward an intended result.
+  status: approved
+  language: en
+  domain: performance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/fc8acec8-f9f3-488e-b25e-bd0a2b718546
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: target
+  preferred_label: Target
+  definition: Intended level of performance within a specified period.
+  status: approved
+  language: en
+  domain: performance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/fc8acec8-f9f3-488e-b25e-bd0a2b718546
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: outcome
+  preferred_label: Outcome
+  definition: A change expected from program activities affecting a target group or condition.
+  status: approved
+  language: en
+  domain: performance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/info/0067b781-0601-4e55-b785-a7da01b7cc3c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: output
+  preferred_label: Output
+  definition: A direct product or deliverable from program activities.
+  status: approved
+  language: en
+  domain: performance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/info/0067b781-0601-4e55-b785-a7da01b7cc3c
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open
+- id: baseline
+  preferred_label: Baseline
+  definition: A starting measurement used as reference for subsequent change.
+  status: approved
+  language: en
+  domain: performance
+  steward: demo-steward
+  source_url: https://open.canada.ca/data/en/dataset/fc8acec8-f9f3-488e-b25e-bd0a2b718546
+  licence: Open Government Licence – Canada
+  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  definition_method: paraphrased
+  reuse_status: verified_open

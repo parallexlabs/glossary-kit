@@ -1,0 +1,34 @@
+# Stewardship Policy
+
+**Organization:** {{ organization }}  
+**Glossary:** {{ glossary_title }}  
+**Effective date:** {{ effective_date }}
+
+## Purpose
+
+Define roles, responsibilities, and processes for maintaining the business glossary.
+
+## Scope
+
+This policy applies to all terms in {{ glossary_title }}.
+
+## Roles
+
+| Role | Responsibilities |
+|------|------------------|
+| Glossary Owner | Accountable for glossary strategy and approval workflow |
+| Term Steward | Maintains assigned terms; proposes changes |
+| Reviewer | Validates definitions against standards |
+| Publisher | Releases approved terms to public channels |
+
+## Change process
+
+1. Submit change request using the change request template.
+2. Steward reviews and updates the term.
+3. Reviewer runs `glossary-kit validate` and `glossary-kit lint`.
+4. Glossary Owner approves or rejects.
+5. Publisher exports updated artefacts.
+
+## Review cadence
+
+Terms are reviewed at least annually or when related systems change.

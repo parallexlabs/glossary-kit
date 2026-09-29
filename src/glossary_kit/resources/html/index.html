@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<nav role="navigation" aria-label="Alphabetical index">
+  <h2 id="browse-heading">Browse by letter</h2>
+  <div class="letter-nav">
+    {% for letter, letter_terms in letters %}
+    <a href="#letter-{{ letter }}">{{ letter }}</a>
+    {% endfor %}
+  </div>
+</nav>
+<div class="search">
+  <label for="search-input">Search terms</label>
+  <input type="search" id="search-input" name="q" autocomplete="off" aria-controls="search-results search-status">
+  <div id="search-status" aria-live="polite" aria-atomic="true"></div>
+  <ul id="search-results" role="list"></ul>
+</div>
+<main id="main" role="main">
+  <h2>All terms</h2>
+  {% for letter, letter_terms in letters %}
+  <section id="letter-{{ letter }}" aria-labelledby="heading-{{ letter }}">
+    <h3 id="heading-{{ letter }}">{{ letter }}</h3>
+    <ul role="list">
+      {% for term in letter_terms %}
+      <li><a href="terms/{{ term.id | slug }}.html">{{ term.preferred_label }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+  <noscript>
+    <p>JavaScript is disabled. Use the alphabetical links above to browse terms.</p>
+  </noscript>
+</main>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var status = document.getElementById('search-status');
+  var index = [];
+  fetch('search-index.json').then(function (r) { return r.json(); }).then(function (data) {
+    index = data;
+    status.textContent = index.length + ' terms indexed';
+  }).catch(function () {
+    status.textContent = 'Search index unavailable';
+  });
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase();
+    results.innerHTML = '';
+    if (!q) { status.textContent = index.length + ' terms indexed'; return; }
+    var matches = index.filter(function (t) {
+      return t.label.toLowerCase().indexOf(q) !== -1 || t.definition.toLowerCase().indexOf(q) !== -1;
+    });
+    status.textContent = matches.length + ' result(s)';
+    matches.slice(0, 20).forEach(function (t) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = t.url;
+      a.textContent = t.label;
+      li.appendChild(a);
+      results.appendChild(li);
+    });
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+dimensions:
+  - id: definitions
+    name: Definition Quality
+    max_score: 4
+    guidance: Terms should have substantive, non-tautological definitions.
+  - id: stewardship
+    name: Stewardship
+    max_score: 4
+    guidance: Terms should have assigned stewards accountable for maintenance.
+  - id: provenance
+    name: Provenance and Licences
+    max_score: 4
+    guidance: Terms should document sources and reuse licences.
+  - id: relationships
+    name: Relationships and Domains
+    max_score: 4
+    guidance: Terms should be organized with domains and related-term links.
+  - id: lifecycle
+    name: Lifecycle Management
+    max_score: 4
+    guidance: Status workflow and deprecation should be modeled.
+  - id: publication
+    name: Publication Readiness
+    max_score: 4
+    guidance: Public terms and attribution should be ready for external release.
