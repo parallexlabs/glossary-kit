@@ -139,7 +139,8 @@ def test_validate_glossary_path_pydantic_error(tmp_path: Path) -> None:
     )
     glossary, diags = validate_glossary_path(bad)
     assert glossary is None
-    assert diags[0].code == "INPUT-001"
+    assert diags[0].code == "GLOS-STRUCT-001"
+    assert "terms" in diags[0].path
 
 
 def test_validate_glossary_path_success(minimal_glossary_path: Path) -> None:

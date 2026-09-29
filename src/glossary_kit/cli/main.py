@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
+from pydantic import ValidationError
 from rich.console import Console
 
 from glossary_kit import __version__
@@ -18,12 +19,14 @@ from glossary_kit.diagnostics.models import (
     format_diagnostics_sarif,
     format_diagnostics_text,
 )
+from glossary_kit.domain.models import Glossary
 from glossary_kit.exports import export_csv, export_jsonld, export_site, export_skos_turtle
+from glossary_kit.exports.site import SiteExportError
 from glossary_kit.governance.templates import init_governance_templates
 from glossary_kit.ingest.loader import IngestError, load_glossary
 from glossary_kit.lint.engine import lint_glossary
 from glossary_kit.rules.catalog import explain_rule, list_rules
-from glossary_kit.validate.structural import validate_glossary_path
+from glossary_kit.validate.structural import pydantic_errors_to_diagnostics, validate_glossary_path
 
 app = typer.Typer(
     name="glossary-kit",
@@ -73,6 +76,17 @@ def _has_errors(diagnostics: list[Diagnostic]) -> bool:
     return any(d.severity == Severity.ERROR for d in diagnostics)
 
 
+def _load_glossary_cli(path: Path) -> Glossary:
+    try:
+        return load_glossary(path)
+    except IngestError as exc:
+        console.print(str(exc))
+        raise typer.Exit(EXIT_INPUT) from exc
+    except ValidationError as exc:
+        _emit(pydantic_errors_to_diagnostics(exc), OutputFormat.TEXT)
+        raise typer.Exit(EXIT_VALIDATION) from exc
+
+
 @app.command("validate")
 def validate_cmd(
     glossary_path: Annotated[Path, typer.Argument(help="Path to glossary YAML or CSV")],
@@ -101,11 +115,7 @@ def lint_cmd(
     if profile not in {"standard", "strict"}:
         console.print(f"Unknown profile: {profile}")
         raise typer.Exit(EXIT_CLI)
-    try:
-        glossary = load_glossary(glossary_path)
-    except IngestError as exc:
-        console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
+    glossary = _load_glossary_cli(glossary_path)
 
     _, struct_diags = validate_glossary_path(glossary_path)
     lint_diags = lint_glossary(glossary, profile=profile)
@@ -123,11 +133,7 @@ def check_cmd(
     format: Annotated[OutputFormat, typer.Option("--format")] = OutputFormat.TEXT,
 ) -> None:
     """Check dictionary alignment against glossary."""
-    try:
-        gloss = load_glossary(glossary)
-    except IngestError as exc:
-        console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
+    gloss = _load_glossary_cli(glossary)
 
     if frictionless or dictionary_path.suffix.lower() in {".yaml", ".yml"}:
         diagnostics = check_frictionless_schema(dictionary_path, gloss)
@@ -148,11 +154,7 @@ def export_skos_cmd(
     output: Annotated[Path, typer.Option("--output", "-o")],
 ) -> None:
     """Export SKOS Turtle."""
-    try:
-        glossary = load_glossary(glossary_path)
-    except IngestError as exc:
-        console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
+    glossary = _load_glossary_cli(glossary_path)
     export_skos_turtle(glossary, output)
     console.print(f"Wrote {output}")
     raise typer.Exit(EXIT_SUCCESS)
@@ -164,11 +166,7 @@ def export_jsonld_cmd(
     output: Annotated[Path, typer.Option("--output", "-o")],
 ) -> None:
     """Export JSON-LD with SKOS context."""
-    try:
-        glossary = load_glossary(glossary_path)
-    except IngestError as exc:
-        console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
+    glossary = _load_glossary_cli(glossary_path)
     export_jsonld(glossary, output)
     console.print(f"Wrote {output}")
     raise typer.Exit(EXIT_SUCCESS)
@@ -184,11 +182,7 @@ def export_csv_cmd(
     if profile not in {"human", "roundtrip"}:
         console.print(f"Unknown profile: {profile}")
         raise typer.Exit(EXIT_CLI)
-    try:
-        glossary = load_glossary(glossary_path)
-    except IngestError as exc:
-        console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
+    glossary = _load_glossary_cli(glossary_path)
     export_csv(glossary, output, profile=profile)
     console.print(f"Wrote {output}")
     raise typer.Exit(EXIT_SUCCESS)
@@ -200,12 +194,12 @@ def export_site_cmd(
     output: Annotated[Path, typer.Option("--output", "-o")],
 ) -> None:
     """Export accessible static HTML site."""
+    glossary = _load_glossary_cli(glossary_path)
     try:
-        glossary = load_glossary(glossary_path)
-    except IngestError as exc:
+        export_site(glossary, output)
+    except SiteExportError as exc:
         console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
-    export_site(glossary, output)
+        raise typer.Exit(EXIT_VALIDATION) from exc
     console.print(f"Wrote site to {output}")
     raise typer.Exit(EXIT_SUCCESS)
 
@@ -228,11 +222,7 @@ def assess_cmd(
     json_output: Annotated[Path | None, typer.Option("--json", help="JSON report path")] = None,
 ) -> None:
     """Generate maturity assessment report (JSON + HTML)."""
-    try:
-        glossary = load_glossary(glossary_path)
-    except IngestError as exc:
-        console.print(str(exc))
-        raise typer.Exit(EXIT_INPUT) from exc
+    glossary = _load_glossary_cli(glossary_path)
 
     report = assess_maturity(glossary)
     html_path = output or Path("maturity.html")

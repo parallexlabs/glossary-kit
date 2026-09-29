@@ -41,9 +41,11 @@ def test_glos_def_003_passes_with_singular_label() -> None:
     assert "GLOS-DEF-003" not in _codes(glossary)
 
 
-def test_glos_def_003_fails_on_plural_label() -> None:
+def test_glos_def_003_fails_on_plural_label_in_strict_profile() -> None:
     glossary = make_glossary(make_term(preferred_label="Records"))
-    assert "GLOS-DEF-003" in _codes(glossary)
+    assert "GLOS-DEF-003" not in _codes(glossary)
+    diags = lint_glossary(glossary, profile="strict")
+    assert any(d.code == "GLOS-DEF-003" for d in diags)
 
 
 def test_glos_def_004_passes_without_self_reference() -> None:
@@ -77,7 +79,10 @@ def test_glos_def_005_fails_on_negative_phrasing() -> None:
 
 def test_glos_lex_001_passes_when_abbreviation_expanded() -> None:
     glossary = make_glossary(
-        make_term(abbreviation="API", definition="An API exposes programmatic access.")
+        make_term(
+            abbreviation="API",
+            definition="Application Programming Interface (API) exposes programmatic access.",
+        )
     )
     assert "GLOS-LEX-001" not in _codes(glossary)
 

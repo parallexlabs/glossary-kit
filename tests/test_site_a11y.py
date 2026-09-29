@@ -65,11 +65,14 @@ def test_site_skip_link_targets_main(tmp_path: Path) -> None:
 def test_site_search_input_has_label_and_live_region(tmp_path: Path) -> None:
     site = _export_sample_site(tmp_path)
     parser = LandmarkParser()
-    parser.feed((site / "index.html").read_text())
-    assert ("search-input", "") in parser.labels
     html = (site / "index.html").read_text()
+    parser.feed(html)
+    assert ("search-input", "") in parser.labels
     assert 'id="search-status" aria-live="polite"' in html
     assert 'aria-controls="search-results search-status"' in html
+    main_start = html.index('<main id="main"')
+    main_end = html.index("</main>", main_start)
+    assert main_start < html.index('role="search"') < main_end
 
 
 def test_site_search_index_matches_public_terms(tmp_path: Path) -> None:

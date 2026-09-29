@@ -26,6 +26,10 @@
     }
   },
   "$defs": {
+    "safeUrl": {
+      "type": "string",
+      "pattern": "^https?://[^\\s/]+(/[^\\s]*)?$"
+    },
     "term": {
       "type": "object",
       "required": ["id", "preferred_label", "definition", "status", "language"],
@@ -33,13 +37,13 @@
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
         "preferred_label": { "type": "string", "minLength": 1 },
-        "definition": { "type": "string" },
+        "definition": { "type": "string", "minLength": 1 },
         "status": { "type": "string", "enum": ["draft", "approved", "deprecated"] },
         "language": { "type": "string", "minLength": 2 },
         "abbreviation": { "type": "string" },
         "synonyms": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": { "type": "string", "minLength": 1 }
         },
         "domain": { "type": "string" },
         "steward": { "type": "string" },
@@ -48,15 +52,16 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
-              "url": { "type": "string" },
+              "url": { "$ref": "#/$defs/safeUrl" },
               "citation": { "type": "string" }
             }
           }
         },
-        "source_url": { "type": "string" },
+        "source_url": { "$ref": "#/$defs/safeUrl" },
         "licence": { "type": "string" },
-        "licence_url": { "type": "string" },
+        "licence_url": { "$ref": "#/$defs/safeUrl" },
         "definition_method": { "type": "string" },
         "reuse_status": {
           "type": "string",
@@ -66,7 +71,7 @@
         "demo": { "type": "boolean" },
         "related_terms": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" }
         },
         "classification": { "type": "string" },
         "dictionary_bindings": {
@@ -74,20 +79,22 @@
           "items": {
             "type": "object",
             "required": ["header", "term_id"],
+            "additionalProperties": false,
             "properties": {
-              "header": { "type": "string" },
-              "term_id": { "type": "string" }
+              "header": { "type": "string", "minLength": 1 },
+              "term_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" }
             }
           }
         },
         "publication": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "visibility": { "type": "string", "enum": ["public", "internal"] }
           }
         },
-        "replaces": { "type": "string" },
-        "replaced_by": { "type": "string" }
+        "replaces": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "replaced_by": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" }
       }
     }
   }

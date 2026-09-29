@@ -8,13 +8,13 @@
     {% endfor %}
   </div>
 </nav>
-<div class="search">
-  <label for="search-input">Search terms</label>
-  <input type="search" id="search-input" name="q" autocomplete="off" aria-controls="search-results search-status">
-  <div id="search-status" aria-live="polite" aria-atomic="true"></div>
-  <ul id="search-results" role="list"></ul>
-</div>
 <main id="main" role="main">
+  <form class="search" role="search" aria-label="Search glossary terms">
+    <label for="search-input">Search terms</label>
+    <input type="search" id="search-input" name="q" autocomplete="off" aria-controls="search-results search-status">
+    <div id="search-status" aria-live="polite" aria-atomic="true"></div>
+    <ul id="search-results" role="list"></ul>
+  </form>
   <h2>All terms</h2>
   {% for letter, letter_terms in letters %}
   <section id="letter-{{ letter }}" aria-labelledby="heading-{{ letter }}">

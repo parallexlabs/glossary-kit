@@ -53,27 +53,32 @@ Required term fields: `id`, `preferred_label`, `definition`, `status`, `language
 
 ## Rule catalogue
 
-Rules are **ISO/IEC 11179-4-inspired** — they do not certify ISO conformance.
+Rules are **ISO/IEC 11179-4-informed** — they do not certify ISO conformance.
 
 | Code | Severity | Standard mapping |
 |------|----------|------------------|
-| GLOS-STRUCT-001 | error | Required fields (ISO/IEC 11179-3/4) |
+| GLOS-STRUCT-001 | error | Required fields (ISO/IEC 11179-3/4-informed) |
 | GLOS-STRUCT-002 | error | Unique term id |
-| GLOS-STRUCT-003 | error | Duplicate label / synonym conflict (SKOS) |
-| GLOS-REL-001 | error | Resolvable references (SKOS / ISO 1087) |
+| GLOS-STRUCT-003 | error | Duplicate label / synonym conflict (SKOS-informed) |
+| GLOS-STRUCT-004 | error | Slug-safe term ids |
+| GLOS-REL-001 | error | Resolvable references (SKOS / ISO 1087-informed) |
 | GLOS-REL-002 | error | Acyclic replaces graph |
-| GLOS-GOV-001 | error | Steward on approved terms (ISO/IEC 38505-1) |
+| GLOS-REL-003 | error | Public terms must not reference internal related terms |
+| GLOS-GOV-001 | error | Steward on approved terms (ISO/IEC 38505-1-informed) |
 | GLOS-GOV-002 | error | Source on approved terms |
 | GLOS-GOV-003 | warning | Deprecated terms should link to replacement |
 | GLOS-DEF-001 | error | Non-empty definition |
 | GLOS-DEF-002 | error | No tautology |
-| GLOS-DEF-003 | warning | Singular label heuristic |
+| GLOS-DEF-003 | warning | Singular label heuristic (strict profile only) |
 | GLOS-DEF-004 | warning | Self-reference in definition |
 | GLOS-DEF-005 | warning | Affirmative phrasing |
-| GLOS-LEX-001 | warning | Abbreviation expansion |
-| DICT-HEAD-001 | error | CSV header mapping (Frictionless) |
+| GLOS-LEX-001 | warning | Abbreviation expansion in parentheses |
+| DICT-HEAD-001 | error | CSV header mapping (Frictionless-informed) |
 | DICT-FRIC-001 | error | Frictionless field mapping |
+| DICT-FRIC-002 | error | Frictionless field shape / logical type |
 | DICT-BIND-001 | error | Explicit dictionary bindings |
+| DICT-BIND-002 | error | Binding term reference |
+| DICT-BIND-003 | error | Duplicate binding header |
 
 Run `glossary-kit rules explain GLOS-DEF-001` for details.
 
@@ -91,7 +96,7 @@ BC security classification terms (43–46) are included with `reuse_status: lice
 - No catalogue platform integration (OpenMetadata, DataHub) in MVP
 - No NLP genus–differentia enforcement
 - Maturity report reflects metadata evidence only — not organizational compliance
-- WCAG 2.2 AA is an engineering target; jurisdictional compliance mapping is separate
+- Site export accessibility is checked by deterministic HTML semantics tests (landmarks, heading order, search form inside `main`, unique element IDs, labelled search input, focus-visible CSS tokens, table captions on maturity reports). These tests do not run axe-core or assert zero WCAG violations.
 - Operates offline; no network calls by default
 
 ## Development

@@ -38,7 +38,7 @@ def lint_glossary(glossary: Glossary, profile: str = "standard") -> list[Diagnos
                 )
             )
 
-        if label.endswith("s") and not label.endswith("ss") and len(label) > 3:
+        if strict and label.endswith("s") and not label.endswith("ss") and len(label) > 3:
             diagnostics.append(
                 Diagnostic(
                     code="GLOS-DEF-003",
@@ -46,7 +46,7 @@ def lint_glossary(glossary: Glossary, profile: str = "standard") -> list[Diagnos
                     path=f"{base}.preferred_label",
                     message=(
                         "Preferred label appears plural; "
-                        "ISO/IEC 11179-4 recommends singular form"
+                        "ISO/IEC 11179-4-informed practice recommends singular form"
                     ),
                     rule_id="GLOS-DEF-003",
                 )
@@ -80,14 +80,18 @@ def lint_glossary(glossary: Glossary, profile: str = "standard") -> list[Diagnos
             )
 
         if term.abbreviation:
-            abbr_pattern = re.compile(rf"\b{re.escape(term.abbreviation)}\b")
-            if not abbr_pattern.search(definition):
+            abbr = term.abbreviation
+            paren_pattern = re.compile(rf"\([^)]*{re.escape(abbr)}[^)]*\)")
+            if not paren_pattern.search(definition):
                 diagnostics.append(
                     Diagnostic(
                         code="GLOS-LEX-001",
                         severity=Severity.WARNING,
                         path=f"{base}.abbreviation",
-                        message=f"Abbreviation '{term.abbreviation}' not expanded in definition",
+                        message=(
+                            f"Abbreviation '{abbr}' should be expanded in definition "
+                            f"using parentheses (e.g. 'Full name ({abbr})')"
+                        ),
                         rule_id="GLOS-LEX-001",
                     )
                 )

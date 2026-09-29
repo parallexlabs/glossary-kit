@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block page_heading %}<h1>{{ term.preferred_label }}</h1>{% endblock %}
 {% block content %}
 <nav role="navigation" aria-label="Breadcrumb">
   <p><a href="../index.html">Back to glossary index</a></p>
@@ -8,7 +9,7 @@
   <div class="demo-banner" role="note">{{ demo_banner }}</div>
   {% endif %}
   <article>
-    <h2>{{ term.preferred_label }}</h2>
+    <p class="site-title">{{ title }}</p>
     <dl>
       <dt>Identifier</dt>
       <dd><code>{{ term.id }}</code></dd>
@@ -23,10 +24,10 @@
       <dd>{{ term.steward }}</dd>
       {% endif %}
     </dl>
-    <h3>Definition</h3>
+    <h2>Definition</h2>
     <p>{{ term.definition }}</p>
     {% if term.synonyms %}
-    <h3>Synonyms</h3>
+    <h2>Synonyms</h2>
     <ul role="list">
       {% for syn in term.synonyms %}
       <li>{{ syn }}</li>
@@ -34,7 +35,7 @@
     </ul>
     {% endif %}
     {% if related_links %}
-    <h3>Related terms</h3>
+    <h2>Related terms</h2>
     <ul role="list">
       {% for rel_id, rel_label, rel_slug in related_links %}
       <li><a href="{{ rel_slug }}.html">{{ rel_label }}</a></li>
@@ -42,7 +43,7 @@
     </ul>
     {% endif %}
     {% if term.source_url %}
-    <h3>Source</h3>
+    <h2>Source</h2>
     <p><a href="{{ term.source_url }}" rel="noopener">{{ term.source_url }}</a></p>
     {% endif %}
     {% if term.licence %}

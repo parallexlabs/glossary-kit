@@ -65,7 +65,7 @@ def test_export_jsonld_context_and_graph_shape(minimal_glossary_path: Path, tmp_
     ctx = doc["@context"]
     assert ctx["@vocab"] == "http://www.w3.org/2004/02/skos/core#"
     assert ctx["gloss"] == "https://glossary-kit.dev/scheme/"
-    assert ctx["prefLabel"]["@language"] == "en"
+    assert "prefLabel" not in ctx or "@language" not in ctx.get("prefLabel", {})
     concepts = [n for n in doc["@graph"] if n.get("@type") == "Concept"]
     assert concepts
 
@@ -79,7 +79,7 @@ def test_export_jsonld_includes_synonyms_and_related(tmp_path: Path) -> None:
     export_jsonld(glossary, out)
     doc = json.loads(out.read_text())
     alpha = next(n for n in doc["@graph"] if n["@id"] == "gloss:alpha")
-    assert alpha["altLabel"] == ["Alias"]
+    assert alpha["altLabel"] == [{"@value": "Alias", "@language": "en"}]
     assert alpha["related"] == ["gloss:beta"]
 
 

@@ -5,6 +5,8 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from glossary_kit.domain.urls import is_safe_http_url
+
 
 class TermStatus(StrEnum):
     DRAFT = "draft"
@@ -29,11 +31,28 @@ class Publication(BaseModel):
     visibility: PublicationVisibility = PublicationVisibility.PUBLIC
 
 
+def _validate_optional_url(value: str | None) -> str | None:
+    if value is None:
+        return None
+    if not is_safe_http_url(value):
+        msg = (
+            "URL must be an absolute http or https URL "
+            "(javascript:, data:, protocol-relative and malformed URLs are rejected)"
+        )
+        raise ValueError(msg)
+    return value
+
+
 class Source(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     url: str | None = None
     citation: str | None = None
+
+    @field_validator("url")
+    @classmethod
+    def _validate_url(cls, v: str | None) -> str | None:
+        return _validate_optional_url(v)
 
 
 class DictionaryBinding(BaseModel):
@@ -79,6 +98,11 @@ class Term(BaseModel):
         if isinstance(v, str):
             return [s.strip() for s in v.split("|") if s.strip()]
         return list(v)
+
+    @field_validator("source_url", "licence_url")
+    @classmethod
+    def _validate_urls(cls, v: str | None) -> str | None:
+        return _validate_optional_url(v)
 
 
 class GlossaryMetadata(BaseModel):

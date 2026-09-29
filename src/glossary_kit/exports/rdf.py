@@ -12,6 +12,14 @@ SKOS_NS = Namespace("http://www.w3.org/2004/02/skos/core#")
 GLOSS_NS = Namespace("https://glossary-kit.dev/scheme/")
 
 
+def _public_term_ids(glossary: Glossary) -> set[str]:
+    return {t.id for t in glossary.public_terms()}
+
+
+def _lang_value(text: str, language: str) -> dict[str, str]:
+    return {"@value": text, "@language": language}
+
+
 def export_skos_turtle(glossary: Glossary, output: Path) -> None:
     g = Graph()
     g.bind("skos", SKOS_NS)
@@ -24,6 +32,7 @@ def export_skos_turtle(glossary: Glossary, output: Path) -> None:
     if glossary.metadata.description:
         g.add((scheme_uri, DCTERMS.description, Literal(glossary.metadata.description)))
 
+    public_ids = _public_term_ids(glossary)
     terms = sorted(glossary.public_terms(), key=lambda t: t.id)
     for term in terms:
         concept = GLOSS_NS[term.id]
@@ -34,9 +43,12 @@ def export_skos_turtle(glossary: Glossary, output: Path) -> None:
         for syn in sorted(term.synonyms):
             g.add((concept, SKOS.altLabel, Literal(syn, lang=term.language)))
         for rel in sorted(term.related_terms):
-            g.add((concept, SKOS.related, GLOSS_NS[rel]))
-        if term.replaces:
-            g.add((concept, SKOS.changeNote, Literal(f"replaces:{term.replaces}")))
+            if rel in public_ids:
+                g.add((concept, SKOS.related, GLOSS_NS[rel]))
+        if term.replaces and term.replaces in public_ids:
+            g.add((concept, GLOSS_NS.replaces, GLOSS_NS[term.replaces]))
+        if term.replaced_by and term.replaced_by in public_ids:
+            g.add((concept, GLOSS_NS.replacedBy, GLOSS_NS[term.replaced_by]))
         if term.source_url:
             g.add((concept, DCTERMS.source, URIRef(term.source_url)))
 
@@ -50,11 +62,10 @@ def export_jsonld(glossary: Glossary, output: Path) -> None:
         "@vocab": "http://www.w3.org/2004/02/skos/core#",
         "dcterms": "http://purl.org/dc/terms/",
         "gloss": "https://glossary-kit.dev/scheme/",
-        "prefLabel": {"@language": "en"},
-        "definition": {"@language": "en"},
-        "altLabel": {"@language": "en"},
         "inScheme": {"@type": "@id"},
         "related": {"@type": "@id"},
+        "replaces": {"@type": "@id", "@id": "gloss:replaces"},
+        "replacedBy": {"@type": "@id", "@id": "gloss:replacedBy"},
         "source": {"@type": "@id", "@id": "dcterms:source"},
     }
 
@@ -67,18 +78,24 @@ def export_jsonld(glossary: Glossary, output: Path) -> None:
         }
     ]
 
+    public_ids = _public_term_ids(glossary)
     for term in sorted(glossary.public_terms(), key=lambda t: t.id):
         node: dict[str, object] = {
             "@id": f"gloss:{term.id}",
             "@type": "Concept",
             "inScheme": scheme_id,
-            "prefLabel": term.preferred_label,
-            "definition": term.definition,
+            "prefLabel": _lang_value(term.preferred_label, term.language),
+            "definition": _lang_value(term.definition, term.language),
         }
         if term.synonyms:
-            node["altLabel"] = sorted(term.synonyms)
-        if term.related_terms:
-            node["related"] = [f"gloss:{r}" for r in sorted(term.related_terms)]
+            node["altLabel"] = [_lang_value(syn, term.language) for syn in sorted(term.synonyms)]
+        public_related = sorted(rel for rel in term.related_terms if rel in public_ids)
+        if public_related:
+            node["related"] = [f"gloss:{r}" for r in public_related]
+        if term.replaces and term.replaces in public_ids:
+            node["replaces"] = f"gloss:{term.replaces}"
+        if term.replaced_by and term.replaced_by in public_ids:
+            node["replacedBy"] = f"gloss:{term.replaced_by}"
         if term.source_url:
             node["source"] = term.source_url
         graph.append(node)

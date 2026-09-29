@@ -9,7 +9,9 @@ import jsonschema
 from pydantic import ValidationError
 
 from glossary_kit.diagnostics.models import Diagnostic, Severity
-from glossary_kit.domain.models import Glossary, TermStatus
+from glossary_kit.domain.models import Glossary, PublicationVisibility, TermStatus
+from glossary_kit.domain.urls import is_safe_http_url
+from glossary_kit.exports.slugs import validate_slug_safe_ids
 from glossary_kit.ingest.loader import IngestError, load_glossary
 
 
@@ -34,6 +36,99 @@ def validate_json_schema(data: dict[str, Any]) -> list[Diagnostic]:
                 path=path,
                 message=error.message,
                 rule_id="GLOS-STRUCT-001",
+            )
+        )
+    return diagnostics
+
+
+def pydantic_errors_to_diagnostics(exc: ValidationError) -> list[Diagnostic]:
+    diagnostics: list[Diagnostic] = []
+    for err in exc.errors():
+        if err["loc"]:
+            loc = ".".join(str(p) for p in err["loc"])
+        elif "at least one term" in err["msg"].lower():
+            loc = "terms"
+        else:
+            loc = "root"
+        diagnostics.append(
+            Diagnostic(
+                code="GLOS-STRUCT-001",
+                severity=Severity.ERROR,
+                path=loc,
+                message=err["msg"],
+                rule_id="GLOS-STRUCT-001",
+            )
+        )
+    return diagnostics
+
+
+def _validate_dictionary_bindings(glossary: Glossary) -> list[Diagnostic]:
+    diagnostics: list[Diagnostic] = []
+    ids = glossary.term_ids()
+    header_map: dict[str, tuple[str, int]] = {}
+
+    for idx, term in enumerate(glossary.terms):
+        base = f"terms[{idx}]"
+        for bind_idx, binding in enumerate(term.dictionary_bindings):
+            bind_path = f"{base}.dictionary_bindings[{bind_idx}]"
+            if binding.term_id not in ids:
+                diagnostics.append(
+                    Diagnostic(
+                        code="DICT-BIND-002",
+                        severity=Severity.ERROR,
+                        path=f"{bind_path}.term_id",
+                        message=(
+                            f"Dictionary binding references unknown term_id "
+                            f"'{binding.term_id}'"
+                        ),
+                        rule_id="DICT-BIND-002",
+                    )
+                )
+            if binding.term_id != term.id:
+                diagnostics.append(
+                    Diagnostic(
+                        code="DICT-BIND-002",
+                        severity=Severity.ERROR,
+                        path=f"{bind_path}.term_id",
+                        message=(
+                            f"Dictionary binding term_id '{binding.term_id}' "
+                            f"does not match owning term '{term.id}'"
+                        ),
+                        rule_id="DICT-BIND-002",
+                    )
+                )
+            header_key = binding.header.lower()
+            if header_key in header_map:
+                _prev_term, prev_idx = header_map[header_key]
+                diagnostics.append(
+                    Diagnostic(
+                        code="DICT-BIND-003",
+                        severity=Severity.ERROR,
+                        path=f"{bind_path}.header",
+                        message=(
+                            f"Duplicate dictionary binding header '{binding.header}' "
+                            f"(also at terms[{prev_idx}].dictionary_bindings)"
+                        ),
+                        rule_id="DICT-BIND-003",
+                    )
+                )
+            else:
+                header_map[header_key] = (term.id, idx)
+
+    return diagnostics
+
+
+def _validate_slug_safe_term_ids(glossary: Glossary) -> list[Diagnostic]:
+    diagnostics: list[Diagnostic] = []
+    messages = validate_slug_safe_ids([t.id for t in glossary.terms])
+    for message in messages:
+        diagnostics.append(
+            Diagnostic(
+                code="GLOS-STRUCT-004",
+                severity=Severity.ERROR,
+                path="terms",
+                message=message,
+                rule_id="GLOS-STRUCT-004",
             )
         )
     return diagnostics
@@ -102,15 +197,74 @@ def validate_structure(glossary: Glossary) -> list[Diagnostic]:
                 )
 
         ids = glossary.term_ids()
-        for rel in term.related_terms:
+        for rel_idx, rel in enumerate(term.related_terms):
             if rel not in ids:
                 diagnostics.append(
                     Diagnostic(
                         code="GLOS-REL-001",
                         severity=Severity.ERROR,
-                        path=f"{base}.related_terms",
+                        path=f"{base}.related_terms[{rel_idx}]",
                         message=f"Related term '{rel}' does not exist",
                         rule_id="GLOS-REL-001",
+                    )
+                )
+                continue
+            rel_term = glossary.term_by_id(rel)
+            if rel_term is not None:
+                term_vis = (
+                    term.publication.visibility
+                    if term.publication
+                    else PublicationVisibility.PUBLIC
+                )
+                rel_vis = (
+                    rel_term.publication.visibility
+                    if rel_term.publication
+                    else PublicationVisibility.PUBLIC
+                )
+                if (
+                    term_vis == PublicationVisibility.PUBLIC
+                    and rel_vis == PublicationVisibility.INTERNAL
+                ):
+                    diagnostics.append(
+                        Diagnostic(
+                            code="GLOS-REL-003",
+                            severity=Severity.ERROR,
+                            path=f"{base}.related_terms[{rel_idx}]",
+                            message=(
+                                f"Public term references internal related term '{rel}'"
+                            ),
+                            rule_id="GLOS-REL-003",
+                        )
+                    )
+
+        for url_field in ("source_url", "licence_url"):
+            url_val = getattr(term, url_field)
+            if url_val and not is_safe_http_url(url_val):
+                diagnostics.append(
+                    Diagnostic(
+                        code="GLOS-STRUCT-001",
+                        severity=Severity.ERROR,
+                        path=f"{base}.{url_field}",
+                        message=(
+                            f"Unsafe or malformed URL in {url_field} "
+                            f"(only http/https absolute URLs allowed)"
+                        ),
+                        rule_id="GLOS-STRUCT-001",
+                    )
+                )
+
+        for src_idx, source in enumerate(term.sources):
+            if source.url and not is_safe_http_url(source.url):
+                diagnostics.append(
+                    Diagnostic(
+                        code="GLOS-STRUCT-001",
+                        severity=Severity.ERROR,
+                        path=f"{base}.sources[{src_idx}].url",
+                        message=(
+                            "Unsafe or malformed source URL "
+                            "(only http/https absolute URLs allowed)"
+                        ),
+                        rule_id="GLOS-STRUCT-001",
                     )
                 )
 
@@ -161,6 +315,8 @@ def validate_structure(glossary: Glossary) -> list[Diagnostic]:
                 )
 
     diagnostics.extend(_check_replaces_cycles(glossary))
+    diagnostics.extend(_validate_dictionary_bindings(glossary))
+    diagnostics.extend(_validate_slug_safe_term_ids(glossary))
     return diagnostics
 
 
@@ -203,19 +359,7 @@ def validate_glossary_path(path: Path) -> tuple[Glossary | None, list[Diagnostic
             )
         ]
     except ValidationError as exc:
-        diagnostics: list[Diagnostic] = []
-        for err in exc.errors():
-            loc = ".".join(str(p) for p in err["loc"])
-            diagnostics.append(
-                Diagnostic(
-                    code="GLOS-STRUCT-001",
-                    severity=Severity.ERROR,
-                    path=loc,
-                    message=err["msg"],
-                    rule_id="GLOS-STRUCT-001",
-                )
-            )
-        return None, diagnostics
+        return None, pydantic_errors_to_diagnostics(exc)
 
     raw_data: dict[str, Any]
     if path.suffix.lower() == ".csv":

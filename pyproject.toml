@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "glossary-kit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Glossary-as-code toolkit for public-sector data governance"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -93,7 +93,7 @@ reportUnknownLambdaType = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
-addopts = "-q --tb=short --cov=glossary_kit --cov-report=term-missing --cov-fail-under=80"
+addopts = "-q --tb=short --cov=glossary_kit --cov-report=term-missing --cov-fail-under=90"
 
 [tool.coverage.run]
 source = ["glossary_kit"]
@@ -105,4 +105,4 @@ exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",
 ]
-fail_under = 80
+fail_under = 90

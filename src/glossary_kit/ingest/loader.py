@@ -27,11 +27,7 @@ def load_glossary_yaml(path: Path) -> Glossary:
     if not isinstance(data, dict):
         msg = f"Expected mapping at root of {path}"
         raise IngestError(msg)
-    try:
-        return Glossary.model_validate(data)
-    except Exception as exc:
-        msg = f"Glossary validation failed for {path}: {exc}"
-        raise IngestError(msg) from exc
+    return Glossary.model_validate(data)
 
 
 def load_glossary_csv(path: Path) -> Glossary:
@@ -86,11 +82,7 @@ def load_glossary_csv(path: Path) -> Glossary:
         },
         "terms": terms,
     }
-    try:
-        return Glossary.model_validate(data)
-    except Exception as exc:
-        msg = f"CSV import validation failed: {exc}"
-        raise IngestError(msg) from exc
+    return Glossary.model_validate(data)
 
 
 def load_glossary(path: Path) -> Glossary:
