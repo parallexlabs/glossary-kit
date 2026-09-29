@@ -2,7 +2,13 @@
 
 Open-source glossary-as-code toolkit from **ParalleX Labs Inc.** for public-sector data governance teams. Glossary Kit combines structural validation, ISO/IEC 11179-4-inspired definition linting, Frictionless dictionary checks, governance templates, maturity self-assessment, and accessible static site export in one CLI package.
 
-This is a **showcase project**. Sample glossary definitions are paraphrased from openly licensed Canadian government sources. No clients, deployments, or procurement outcomes are claimed.
+Sample glossary definitions are paraphrased from openly licensed Canadian government sources. No clients, deployments, or procurement outcomes are claimed.
+
+## Open by design
+
+**We build in the open.** ParalleX Labs Inc. publishes its tools, methods and learning materials under open licences, so public-interest teams can use them, check how they work and adapt them freely. Open work is easier to trust, because anyone can see exactly how a result is produced. Code is licensed under Apache-2.0.
+
+**Our own work, and only ours.** Everything in this repository was created by ParalleX Labs Inc. from public data and synthetic examples. It contains no client data, no client projects, and no one else's confidential information or intellectual property.
 
 ## Quickstart
 
@@ -53,7 +59,7 @@ Required term fields: `id`, `preferred_label`, `definition`, `status`, `language
 
 ## Rule catalogue
 
-Rules are **ISO/IEC 11179-4-informed** — they do not certify ISO conformance.
+Rules are **ISO/IEC 11179-4-informed**; they do not certify ISO conformance.
 
 | Code | Severity | Standard mapping |
 |------|----------|------------------|
@@ -95,7 +101,7 @@ BC security classification terms (43–46) are included with `reuse_status: lice
 
 - No catalogue platform integration (OpenMetadata, DataHub) in MVP
 - No NLP genus–differentia enforcement
-- Maturity report reflects metadata evidence only — not organizational compliance
+- Maturity report reflects metadata evidence only, not organizational compliance
 - Site export accessibility is checked by deterministic HTML semantics tests (landmarks, heading order, search form inside `main`, unique element IDs, labelled search input, focus-visible CSS tokens, table captions on maturity reports). These tests do not run axe-core or assert zero WCAG violations.
 - Operates offline; no network calls by default
 
@@ -110,4 +116,4 @@ make typecheck
 
 ## Licence
 
-Apache-2.0 — see [LICENSE](LICENSE). Sample content remains under its respective source licences.
+Apache-2.0. See [LICENSE](LICENSE). Sample content remains under its respective source licences.
