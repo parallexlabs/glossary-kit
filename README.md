@@ -1,3 +1,10 @@
+<p align="center" class="brand-mark">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/brand/parallex-mark-dark.png">
+    <img src=".github/brand/parallex-mark.png" alt="ParalleX Labs" width="120">
+  </picture>
+</p>
+
 # Glossary Kit
 
 Open-source glossary-as-code toolkit from **ParalleX Labs Inc.** for public-sector data governance teams. Glossary Kit combines structural validation, ISO/IEC 11179-4-inspired definition linting, Frictionless dictionary checks, governance templates, maturity self-assessment, and accessible static site export in one CLI package.
