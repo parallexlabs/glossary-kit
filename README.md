@@ -102,7 +102,9 @@ The sample glossary (`examples/sample_glossary.yaml`) includes paraphrased defin
 - [Open Government Licence – Canada](https://open.canada.ca/en/open-government-licence-canada)
 - [Statistics Canada Open Licence](https://www.statcan.gc.ca/en/terms-conditions/open-licence)
 
-BC security classification terms (43–46) are included with `reuse_status: licence_not_verified` and `demo: true` because text reuse from BC policy PDFs is unclear.
+The "Open data" term (term 10) paraphrases a gov.bc.ca web page. That page is covered by the Province of British Columbia website copyright, not the Open Government Licence – Canada. The Open Government Licence – British Columbia applies only to records in the BC Data Catalogue that specify it. Term 10 is therefore included with `reuse_status: licence_not_verified` and `demo: true`.
+
+BC security classification terms (43–46) are also included with `reuse_status: licence_not_verified` and `demo: true` because text reuse from BC policy PDFs is unclear.
 
 ## Limitations
 

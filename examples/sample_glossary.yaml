@@ -126,10 +126,11 @@ terms:
   domain: open-data
   steward: demo-steward
   source_url: https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data
-  licence: Open Government Licence – Canada
-  licence_url: https://open.canada.ca/en/open-government-licence-canada
+  licence: BC Government website copyright (OGL-BC applies only to BC Data Catalogue records that specify it)
+  licence_url: https://www2.gov.bc.ca/gov/content/home/copyright
   definition_method: paraphrased
-  reuse_status: verified_open
+  reuse_status: licence_not_verified
+  demo: true
 - id: census-subdivision
   preferred_label: Census subdivision
   definition: A municipality or area treated as a municipal equivalent for census purposes.
