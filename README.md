@@ -9,7 +9,9 @@
 
 Open-source glossary-as-code toolkit from **ParalleX Labs Inc.** for public-sector data governance teams. Glossary Kit combines structural validation, ISO/IEC 11179-4-inspired definition linting, Frictionless dictionary checks, governance templates, maturity self-assessment, and accessible static site export in one CLI package.
 
-Sample glossary definitions are paraphrased from openly licensed Canadian government sources. No clients, deployments, or procurement outcomes are claimed.
+Status: early release (0.2.0) for evaluation. It has not been tested with a public-sector team.
+
+Most sample glossary definitions are paraphrased from openly licensed Canadian government sources. No clients, deployments, or procurement outcomes are claimed.
 
 ## Open by design
 
@@ -102,9 +104,7 @@ The sample glossary (`examples/sample_glossary.yaml`) includes paraphrased defin
 - [Open Government Licence – Canada](https://open.canada.ca/en/open-government-licence-canada)
 - [Statistics Canada Open Licence](https://www.statcan.gc.ca/en/terms-conditions/open-licence)
 
-The "Open data" term (term 10) paraphrases a gov.bc.ca web page. That page is covered by the Province of British Columbia website copyright, not the Open Government Licence – Canada. The Open Government Licence – British Columbia applies only to records in the BC Data Catalogue that specify it. Term 10 is therefore included with `reuse_status: licence_not_verified` and `demo: true`.
-
-BC security classification terms (43–46) are also included with `reuse_status: licence_not_verified` and `demo: true` because text reuse from BC policy PDFs is unclear.
+Terms 10 and 43 to 46 use original definitions written by ParalleX Labs Inc. The linked BC pages are context only.
 
 ## Limitations
 

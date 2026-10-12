@@ -120,17 +120,18 @@ terms:
   reuse_status: verified_open
 - id: open-data
   preferred_label: Open data
-  definition: Data made available under terms that support reuse, with documentation describing the data.
+  definition: Data that a government or public body makes available for others to access and reuse under stated
+    permissions, typically with descriptive metadata and documentation.
   status: approved
   language: en
   domain: open-data
   steward: demo-steward
-  source_url: https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data
-  licence: BC Government website copyright (OGL-BC applies only to BC Data Catalogue records that specify it)
-  licence_url: https://www2.gov.bc.ca/gov/content/home/copyright
-  definition_method: paraphrased
-  reuse_status: licence_not_verified
-  demo: true
+  sources:
+  - citation: ParalleX Labs Inc. (original definition)
+  - url: https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data
+  licence: Apache-2.0
+  licence_url: https://www.apache.org/licenses/LICENSE-2.0
+  definition_method: original
 - id: census-subdivision
   preferred_label: Census subdivision
   definition: A municipality or area treated as a municipal equivalent for census purposes.
@@ -539,56 +540,60 @@ terms:
   reuse_status: verified_open
 - id: public-classification
   preferred_label: Public (security classification)
-  definition: Information whose unauthorized disclosure is not expected to cause injury.
+  definition: A baseline security marking for information that may be shared broadly because its release is not
+    expected to harm people, programs, or government assets.
   status: approved
   language: en
   domain: privacy
   steward: demo-steward
-  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
-  licence: BC classification standard (unclear)
-  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
-  definition_method: paraphrased
-  reuse_status: licence_not_verified
-  demo: true
+  sources:
+  - citation: ParalleX Labs Inc. (original definition)
+  - url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: Apache-2.0
+  licence_url: https://www.apache.org/licenses/LICENSE-2.0
+  definition_method: original
 - id: protected-a
   preferred_label: Protected A
-  definition: British Columbia security label indicating disclosure could cause injury.
+  definition: A protective marking for information whose improper disclosure could cause limited harm to
+    privacy, operations, or public trust.
   status: approved
   language: en
   domain: privacy
   steward: demo-steward
-  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
-  licence: BC classification standard (unclear)
-  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
-  definition_method: paraphrased
-  reuse_status: licence_not_verified
-  demo: true
+  sources:
+  - citation: ParalleX Labs Inc. (original definition)
+  - url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: Apache-2.0
+  licence_url: https://www.apache.org/licenses/LICENSE-2.0
+  definition_method: original
 - id: protected-b
   preferred_label: Protected B
-  definition: British Columbia security label indicating disclosure could cause serious injury.
+  definition: A protective marking for sensitive information whose unauthorized release could cause serious
+    harm, such as significant privacy impacts or major disruption to programs or services.
   status: approved
   language: en
   domain: privacy
   steward: demo-steward
-  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
-  licence: BC classification standard (unclear)
-  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
-  definition_method: paraphrased
-  reuse_status: licence_not_verified
-  demo: true
+  sources:
+  - citation: ParalleX Labs Inc. (original definition)
+  - url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: Apache-2.0
+  licence_url: https://www.apache.org/licenses/LICENSE-2.0
+  definition_method: original
 - id: protected-c
   preferred_label: Protected C
-  definition: British Columbia security label indicating disclosure could cause extremely grave injury.
+  definition: A protective marking for highly sensitive information whose disclosure could cause severe or
+    exceptional harm, including risks to life, safety or critical infrastructure.
   status: approved
   language: en
   domain: privacy
   steward: demo-steward
-  source_url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
-  licence: BC classification standard (unclear)
-  licence_url: https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc
-  definition_method: paraphrased
-  reuse_status: licence_not_verified
-  demo: true
+  sources:
+  - citation: ParalleX Labs Inc. (original definition)
+  - url: https://www2.gov.bc.ca/assets/gov/government/services-and-policies-for-government/information-management/information-security/classification/classification_standard.pdf
+  licence: Apache-2.0
+  licence_url: https://www.apache.org/licenses/LICENSE-2.0
+  definition_method: original
 - id: privacy-risk
   preferred_label: Privacy risk
   definition: Possibility that handling personal information could adversely affect privacy.
