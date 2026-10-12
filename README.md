@@ -15,7 +15,7 @@ Sample glossary definitions are paraphrased from openly licensed Canadian govern
 
 **We build in the open.** ParalleX Labs Inc. publishes its tools, methods and learning materials under open licences, so public-interest teams can use them, check how they work and adapt them freely. Open work is easier to trust, because anyone can see exactly how a result is produced. Code is licensed under Apache-2.0.
 
-**Our own work, and only ours.** Everything in this repository was created by ParalleX Labs Inc. from public data and synthetic examples. It contains no client data, no client projects, and no one else's confidential information or intellectual property.
+**Our own work.** ParalleX Labs Inc. wrote the code, documentation and synthetic examples. The sample glossary paraphrases public government sources. Each term names its source and licence. This repository contains no client data and no confidential information.
 
 ## Quickstart
 
